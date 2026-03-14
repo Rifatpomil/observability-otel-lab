@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { Address, CartItem, GetQuoteResponse } from '../../protos/demo';
 
 const { SHIPPING_ADDR = '' } = process.env;

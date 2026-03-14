@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../../components/Layout';

@@ -1,8 +1,3 @@
-/*
- * Copyright The OpenTelemetry Authors
- * SPDX-License-Identifier: Apache-2.0
- */
-
 package frauddetection
 
 import org.apache.kafka.clients.consumer.ConsumerConfig.*

@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 defmodule FlagdUiWeb.PageControllerTest do
   use FlagdUiWeb.ConnCase
 

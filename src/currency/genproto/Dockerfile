@@ -1,5 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
 # Copyright 2023 The OpenTelemetry Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");

@@ -1,8 +1,6 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import CartIcon from '../CartIcon';
 import CurrencySwitcher from '../CurrencySwitcher';
+import SmartSearch from '../SmartSearch/SmartSearch';
 import * as S from './Header.styled';
 
 const Header = () => {
@@ -13,6 +11,7 @@ const Header = () => {
           <S.NavBarBrand href="/">
             <S.BrandImg />
           </S.NavBarBrand>
+          <SmartSearch />
           <S.Controls>
             <CurrencySwitcher />
             <CartIcon />

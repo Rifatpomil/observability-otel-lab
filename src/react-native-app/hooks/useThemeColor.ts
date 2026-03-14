@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 /**
  * Learn more about light and dark modes:
  * https://docs.expo.dev/guides/color-schemes/

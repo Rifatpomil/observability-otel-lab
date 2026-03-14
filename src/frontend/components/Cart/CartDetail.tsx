@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import CartItems from '../CartItems';

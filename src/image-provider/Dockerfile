@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 FROM nginxinc/nginx-unprivileged:1.29.0-alpine3.22-otel
 
 USER 101

@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 import DeviceInfo from "react-native-device-info";
 import { Platform } from "react-native";
 

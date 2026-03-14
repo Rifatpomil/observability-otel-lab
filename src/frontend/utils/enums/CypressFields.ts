@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 export enum CypressFields {
   Ad = 'ad',
   CartDropdown = 'cart-dropdown',

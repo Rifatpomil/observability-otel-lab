@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 
 FROM docker.io/library/ruby:3.4.7-alpine3.22 AS builder
 

@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 FROM envoyproxy/envoy:v1.34-latest
 
 RUN apt-get update && \

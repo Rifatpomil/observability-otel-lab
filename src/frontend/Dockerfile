@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 FROM docker.io/library/node:24-slim AS builder
 
 WORKDIR /app

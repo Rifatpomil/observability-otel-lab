@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 import Fastify from "fastify";
 import proxy from "@fastify/http-proxy";
 import { trace, SpanStatusCode } from "@opentelemetry/api";

@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 
 import Ionicons from "@expo/vector-icons/Ionicons";

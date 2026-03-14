@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 import { useQueryClient } from '@tanstack/react-query'
 import { ThemedView } from "@/components/ThemedView";
 import { StyleSheet } from "react-native";

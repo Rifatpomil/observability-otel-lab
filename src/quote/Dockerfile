@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 
 FROM ghcr.io/mlocati/php-extension-installer:2.9.11 AS installer
 

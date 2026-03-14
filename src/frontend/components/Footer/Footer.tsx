@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { useEffect, useState } from 'react';
 import * as S from './Footer.styled';
 import SessionGateway from '../../gateways/Session.gateway';
@@ -27,7 +24,7 @@ const Footer = () => {
         </p>
       </div>
       <p>
-        @ {currentYear} OpenTelemetry (<a href="https://github.com/open-telemetry/opentelemetry-demo">Source Code</a>)
+        @ {currentYear} Observability Lab
       </p>
       <PlatformFlag />
     </S.Footer>

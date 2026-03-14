@@ -1,8 +1,5 @@
 #!/usr/bin/python
 
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 # Python
 import os
 import simplejson as json

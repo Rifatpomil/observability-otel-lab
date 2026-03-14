@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 defmodule FlagdUiWeb.Dashboard do
   use FlagdUiWeb, :live_view
 

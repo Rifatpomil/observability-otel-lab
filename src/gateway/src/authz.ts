@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 // Authz checks: add span attributes for (tenant_id, relation, object) without leaking secrets.
 // Uses hashed/redacted values for PII - only structural info in spans.
 import { trace } from "@opentelemetry/api";

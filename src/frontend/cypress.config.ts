@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { defineConfig } from 'cypress';
 import dotEnv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';

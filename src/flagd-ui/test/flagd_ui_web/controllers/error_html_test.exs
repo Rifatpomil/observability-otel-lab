@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 defmodule FlagdUiWeb.ErrorHTMLTest do
   use FlagdUiWeb.ConnCase, async: true
 

@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import ProductCatalogGateway from '../gateways/rpc/ProductCatalog.gateway';
 import CurrencyGateway from '../gateways/rpc/Currency.gateway';
 import { Money } from '../protos/demo';

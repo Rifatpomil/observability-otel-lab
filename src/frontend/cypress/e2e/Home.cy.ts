@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import getSymbolFromCurrency from 'currency-symbol-map';
 import SessionGateway from '../../gateways/Session.gateway';
 import { getElementByField } from '../../utils/Cypress';

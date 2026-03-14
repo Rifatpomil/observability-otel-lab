@@ -34,7 +34,7 @@ If you need to upgrade the version of gradle then run
 
 ## Building Docker
 
-From the root of `opentelemetry-demo`, run:
+From the project root, run:
 
 ```sh
 docker build --file ./src/ad/Dockerfile ./

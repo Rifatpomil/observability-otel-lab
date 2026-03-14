@@ -1,5 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
 """
 Queueflow service - FastAPI with middleware spans + DB spans.
 Exposes queue depth and job endpoints.

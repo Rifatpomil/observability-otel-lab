@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { useMemo } from 'react';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import ApiGateway from '../../gateways/Api.gateway';

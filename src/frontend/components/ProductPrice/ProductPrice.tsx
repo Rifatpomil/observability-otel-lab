@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { useMemo } from 'react';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { Money } from '../../protos/demo';

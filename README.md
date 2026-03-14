@@ -1,128 +1,155 @@
-<!-- markdownlint-disable-next-line -->
-# <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OTel logo" width="45"> OpenTelemetry Demo
+# 🔭 Observability Lab — AI-Powered Microservices Platform
 
-[![Slack](https://img.shields.io/badge/slack-@cncf/otel/demo-brightgreen.svg?logo=slack)](https://cloud-native.slack.com/archives/C03B4CWV4DA)
-[![Version](https://img.shields.io/github/v/release/open-telemetry/opentelemetry-demo?color=blueviolet)](https://github.com/open-telemetry/opentelemetry-demo/releases)
-[![Downloads](https://img.shields.io/docker/pulls/otel/demo)](https://hub.docker.com/r/otel/demo)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?color=red)](https://github.com/open-telemetry/opentelemetry-demo/blob/main/LICENSE)
-[![Integration Tests](https://github.com/open-telemetry/opentelemetry-demo/actions/workflows/run-integration-tests.yml/badge.svg)](https://github.com/open-telemetry/opentelemetry-demo/actions/workflows/run-integration-tests.yml)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/opentelemetry-demo)](https://artifacthub.io/packages/helm/opentelemetry-helm/opentelemetry-demo)
-[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo.svg?type=shield&issueType=license)](https://app.fossa.com/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo?ref=badge_shield&issueType=license)
-[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo.svg?type=shield&issueType=security)](https://app.fossa.com/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo?ref=badge_shield&issueType=security)
-[![OpenSSF Scorecard for opentelemetry-demo](https://api.scorecard.dev/projects/github.com/open-telemetry/opentelemetry-demo/badge)](https://scorecard.dev/viewer/?uri=github.com/open-telemetry/opentelemetry-demo)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9247/badge)](https://www.bestpractices.dev/en/projects/9247)
+A production-grade, AI-enhanced microservices e-commerce platform with full-stack observability powered by OpenTelemetry. Built to demonstrate modern distributed systems engineering, AI integration, and end-to-end observability across 15+ polyglot services.
 
-## Welcome to the OpenTelemetry Astronomy Shop Demo
+## ✨ Key Features
 
-This repository contains the OpenTelemetry Astronomy Shop, a microservice-based
-distributed system intended to illustrate the implementation of OpenTelemetry in
-a near real-world environment.
+### 🧠 AI Engineering
+- **Semantic Smart Search (RAG)** — FAISS vector index with `all-MiniLM-L6-v2` embeddings for natural language product search
+- **AI Shopping Assistant** — Glassmorphism chat UI with local LLM inference via `llama-cpp-python`
+- **Smart Recommendations** — Category-based recommendation engine with A/B testing via feature flags
+- **AI Product Reviews** — LLM-generated review summaries with OpenTelemetry GenAI instrumentation
 
-Our goals are threefold:
+### 📡 Observability Stack
+- **Distributed Tracing** — End-to-end traces across all services (Jaeger)
+- **Metrics & Dashboards** — Prometheus + Grafana with APM, service map, and host metrics dashboards
+- **Centralized Logging** — Structured logs via OpenSearch with log-trace correlation
+- **Synthetic Monitoring** — HTTP health checks and load testing with Playwright
 
-- Provide a realistic example of a distributed system that can be used to
-  demonstrate OpenTelemetry instrumentation and observability.
-- Build a base for vendors, tooling authors, and others to extend and
-  demonstrate their OpenTelemetry integrations.
-- Create a living example for OpenTelemetry contributors to use for testing new
-  versions of the API, SDK, and other components or enhancements.
+### 🏗️ Architecture
+- **15+ Microservices** in Go, Python, Java/Kotlin, .NET, Node.js, Rust, PHP, Ruby, Elixir, and C++
+- **Event-Driven Workflows** — Kafka-based async processing (checkout → accounting → fraud detection)
+- **Feature Flags** — OpenFeature with Flagd for controlled rollouts and chaos engineering
+- **Service Mesh** — Envoy-based frontend proxy with access logging and tracing
 
-We've already made [huge
-progress](https://github.com/open-telemetry/opentelemetry-demo/blob/main/CHANGELOG.md),
-and development is ongoing. We hope to represent the full feature set of
-OpenTelemetry across its languages in the future.
+## 🏛️ Architecture Overview
 
-If you'd like to help (**which we would love**), check out our [contributing
-guidance](./CONTRIBUTING.md).
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         Frontend Proxy (Envoy)                      │
+│                    Load Balancing · Routing · Tracing                │
+└──────────────┬──────────────┬───────────────┬───────────────────────┘
+               │              │               │
+        ┌──────▼──────┐ ┌────▼────┐   ┌──────▼──────┐
+        │  Frontend    │ │ Grafana │   │   Jaeger    │
+        │  (Next.js)   │ │         │   │             │
+        └──────┬───────┘ └─────────┘   └─────────────┘
+               │
+    ┌──────────┼──────────┬──────────┬──────────┬──────────┐
+    │          │          │          │          │          │
+┌───▼───┐ ┌───▼───┐ ┌────▼───┐ ┌───▼────┐ ┌───▼───┐ ┌───▼────┐
+│  Ad   │ │ Cart  │ │Checkout│ │Currency│ │Product │ │Recommend│
+│(Java) │ │(.NET) │ │ (Go)   │ │ (C++)  │ │Catalog │ │ (Python)│
+└───────┘ └───┬───┘ └───┬────┘ └────────┘ │ (Go)   │ └─────────┘
+              │         │                  └────────┘
+         ┌────▼───┐  ┌──▼───┐     ┌──────────┐
+         │ Valkey  │  │Kafka │────▶│Accounting│
+         │(Cache)  │  │      │     │  (.NET)  │
+         └────────┘  │      │     └──────────┘
+                     │      │────▶┌──────────────┐
+                     └──────┘     │Fraud Detection│
+                                  │   (Kotlin)    │
+                                  └───────────────┘
+```
 
-If you'd like to extend this demo or maintain a fork of it, read our
-[fork guidance](https://opentelemetry.io/docs/demo/forking/).
+## 🛠️ Tech Stack
 
-## Quick start
+| Layer | Technologies |
+|-------|-------------|
+| **Frontend** | Next.js, React, TypeScript |
+| **Backend Services** | Go, Python, Java, Kotlin, .NET, Node.js, Rust, PHP, Ruby, Elixir, C++ |
+| **AI/ML** | FAISS, Sentence Transformers, llama-cpp-python, OpenAI-compatible API |
+| **Messaging** | Apache Kafka |
+| **Databases** | PostgreSQL, Valkey (Redis-compatible) |
+| **Observability** | OpenTelemetry, Jaeger, Prometheus, Grafana, OpenSearch |
+| **Feature Flags** | OpenFeature, Flagd |
+| **Infrastructure** | Docker Compose, Envoy Proxy, Kubernetes (Helm) |
 
-You can be up and running with the demo in a few minutes. Check out the docs for
-your preferred deployment method:
+## 🚀 Quick Start
 
-- [Docker](https://opentelemetry.io/docs/demo/docker_deployment/)
-- [Kubernetes](https://opentelemetry.io/docs/demo/kubernetes_deployment/)
+### Prerequisites
+- [Docker](https://www.docker.com/get-started/) & Docker Compose v2.0+
+- [Make](https://www.gnu.org/software/make/) (optional, for convenience commands)
 
-## Documentation
+### Run the Platform
 
-For detailed documentation, see [Demo Documentation][docs]. If you're curious
-about a specific feature, the [docs landing page][docs] can point you in the
-right direction.
+```bash
+# Start all services
+docker compose up -d --build
 
-## Demos featuring the Astronomy Shop
+# Or use Make
+make start
+```
 
-We welcome any vendor to fork the project to demonstrate their services and
-adding a link below. The community is committed to maintaining the project and
-keeping it up to date for you.
+### Access the UIs
 
-|                           |                |                                  |
-|---------------------------|----------------|----------------------------------|
-| [AlibabaCloud LogService] | [Google Cloud] | [Oracle]                         |
-| [Apache Doris]            | [Grafana Labs] | [Parseable]                      |
-| [AppDynamics]             | [Guance]       | [Sentry]                         |
-| [Aspecto]                 | [Honeycomb.io] | [ServiceNow Cloud Observability] |
-| [Axiom]                   | [Instana]      | [SigNoz]                         |
-| [Axoflow]                 | [Kloudfuse]    | [Splunk]                         |
-| [Azure Data Explorer]     | [Kopai]        | [Sumo Logic]                     |
-| [Causely]                 | [Last9]        | [TelemetryHub]                   |
-| [ClickStack]              | [Liatrio]      | [Teletrace]                      |
-| [Coralogix]               | [Logz.io]      | [Tinybird]                       |
-| [Dash0]                   | [New Relic]    | [Tracetest]                      |
-| [Datadog]                 | [Oodle]        | [Tsuga]                          |
-| [Dynatrace]               | [OpenObserve]  | [Uptrace]                        |
-| [Elastic]                 | [OpenSearch]   | [VictoriaMetrics]                |
+| Service | URL |
+|---------|-----|
+| **Storefront** | [http://localhost:8080](http://localhost:8080) |
+| **Jaeger (Traces)** | [http://localhost:8080/jaeger/ui](http://localhost:8080/jaeger/ui) |
+| **Grafana (Dashboards)** | [http://localhost:8080/grafana](http://localhost:8080/grafana) |
+| **Feature Flags** | [http://localhost:8080/feature](http://localhost:8080/feature) |
+| **Load Generator** | [http://localhost:8080/loadgen](http://localhost:8080/loadgen) |
 
-## Contributing
+### Stop the Platform
 
-To get involved with the project see our [CONTRIBUTING](CONTRIBUTING.md)
-documentation.
+```bash
+docker compose down --remove-orphans --volumes
+# or
+make stop
+```
 
-[docs]: https://opentelemetry.io/docs/demo/
+## 🚦 Feature Flags
 
-<!-- Links for Demos featuring the Astronomy Shop section -->
+The platform includes built-in feature flags for chaos engineering and A/B testing:
 
-[AlibabaCloud LogService]: https://github.com/aliyun-sls/opentelemetry-demo
-[AppDynamics]: https://community.splunk.com/t5/AppDynamics-Knowledge-Base/How-to-observe-Kubernetes-deployment-of-OpenTelemetry-demo-app/ta-p/741454
-[Apache Doris]: https://github.com/apache/doris-opentelemetry-demo
-[Aspecto]: https://github.com/aspecto-io/opentelemetry-demo
-[Axiom]: https://play.axiom.co/axiom-play-qf1k/dashboards/otel.traces.otel-demo-traces
-[Axoflow]: https://axoflow.com/opentelemetry-support-in-more-detail-in-axosyslog-and-syslog-ng/
-[Azure Data Explorer]: https://github.com/Azure/Azure-kusto-opentelemetry-demo
-[Causely]: https://github.com/causely-oss/otel-demo
-[ClickStack]: https://github.com/ClickHouse/opentelemetry-demo
-[Coralogix]: https://coralogix.com/blog/configure-otel-demo-send-telemetry-data-coralogix
-[Dash0]: https://github.com/dash0hq/opentelemetry-demo
-[Datadog]: https://docs.datadoghq.com/opentelemetry/guide/otel_demo_to_datadog
-[Dynatrace]: https://www.dynatrace.com/news/blog/opentelemetry-demo-application-with-dynatrace/
-[Elastic]: https://github.com/elastic/opentelemetry-demo
-[Google Cloud]: https://github.com/GoogleCloudPlatform/opentelemetry-demo
-[Grafana Labs]: https://github.com/grafana/opentelemetry-demo
-[Guance]: https://github.com/GuanceCloud/opentelemetry-demo
-[Honeycomb.io]: https://github.com/honeycombio/opentelemetry-demo
-[Instana]: https://github.com/instana/opentelemetry-demo
-[Kloudfuse]: https://github.com/kloudfuse/opentelemetry-demo
-[Kopai]: https://github.com/kopai-app/opentelemetry-demo/tree/main/kopai
-[Last9]: https://last9.io/docs/integrations-opentelemetry-demo/
-[Liatrio]: https://github.com/liatrio/opentelemetry-demo
-[Logz.io]: https://logz.io/learn/how-to-run-opentelemetry-demo-with-logz-io/
-[New Relic]: https://github.com/newrelic/opentelemetry-demo
-[Oodle]: https://blog.oodle.ai/meet-oodle-unified-and-ai-native-observability/
-[OpenSearch]: https://github.com/opensearch-project/opentelemetry-demo
-[OpenObserve]: https://openobserve.ai/blog/opentelemetry-astronomy-shop-demo/
-[Oracle]: https://github.com/oracle-quickstart/oci-o11y-solutions/blob/main/knowledge-content/opentelemetry-demo
-[Parseable]: https://www.parseable.com/blog/open-telemetry-demo-with-parseable-a-complete-observability-setup
-[Sentry]: https://github.com/getsentry/opentelemetry-demo
-[ServiceNow Cloud Observability]: https://docs.lightstep.com/otel/quick-start-operator#send-data-from-the-opentelemetry-demo
-[SigNoz]: https://signoz.io/blog/opentelemetry-demo/
-[Splunk]: https://github.com/signalfx/opentelemetry-demo
-[Sumo Logic]: https://www.sumologic.com/blog/common-opentelemetry-demo-application/
-[TelemetryHub]: https://github.com/TelemetryHub/opentelemetry-demo/tree/telemetryhub-backend
-[Teletrace]: https://github.com/teletrace/opentelemetry-demo
-[Tinybird]: https://github.com/tinybirdco/opentelemetry-demo
-[Tracetest]: https://github.com/kubeshop/opentelemetry-demo
-[Tsuga]: https://github.com/tsuga-dev/opentelemetry-demo
-[Uptrace]: https://github.com/uptrace/uptrace/tree/master/example/opentelemetry-demo
-[VictoriaMetrics]: https://github.com/VictoriaMetrics-Community/opentelemetry-demo
+| Flag | Description |
+|------|-------------|
+| `adServiceFailure` | Triggers Ad Service errors |
+| `adServiceHighCpu` | Simulates high CPU usage on Ad Service |
+| `cartServiceFailure` | Triggers Cart Service errors |
+| `paymentServiceFailure` | Simulates payment processing failures |
+| `paymentServiceUnreachable` | Makes payment service unreachable from checkout |
+| `loadGeneratorFloodHomepage` | Floods homepage with requests |
+| `kafkaQueueProblems` | Simulates Kafka queue issues |
+| `imageSlowLoad` | Slows down image loading |
+| `recommendationCanary` | A/B tests the smart recommendation algorithm |
+| `llmInaccurateResponse` | Rolls out a "chaotic" AI version for reliability testing |
+| `llmRateLimitError` | Simulates high-load 429 error scenarios |
+
+## 📂 Project Structure
+
+```
+├── src/
+│   ├── accounting/          # .NET — Kafka consumer, order processing
+│   ├── ad/                  # Java — Advertisement service
+│   ├── cart/                # .NET — Shopping cart with Valkey
+│   ├── checkout/            # Go — Order checkout with Kafka producer
+│   ├── currency/            # C++ — Currency conversion
+│   ├── email/               # Ruby — Email notifications
+│   ├── flagd/               # Feature flag configurations
+│   ├── flagd-ui/            # Elixir — Feature flag management UI
+│   ├── fraud-detection/     # Kotlin — Kafka consumer, fraud analysis
+│   ├── frontend/            # Next.js — Storefront UI
+│   ├── frontend-proxy/      # Envoy — API gateway & reverse proxy
+│   ├── gateway/             # Node.js — API gateway service
+│   ├── image-provider/      # Nginx — Static image hosting
+│   ├── llm/                 # Python — Mock LLM service
+│   ├── load-generator/      # Python — Locust load testing
+│   ├── payment/             # Node.js — Payment processing
+│   ├── product-catalog/     # Go — Product data (PostgreSQL)
+│   ├── product-reviews/     # Python — AI-powered review summaries
+│   ├── recommendation/      # Python — Product recommendations
+│   ├── quote/               # PHP — Shipping quotes
+│   └── shipping/            # Rust — Shipping calculations
+├── observability/           # Collector, Grafana, Prometheus configs
+├── kubernetes/              # Kubernetes deployment manifests
+├── pb/                      # Protocol Buffer definitions
+├── docker-compose.yml       # Full deployment
+├── docker-compose.minimal.yml  # Minimal deployment
+└── Makefile                 # Build & deployment commands
+```
+
+## 📄 License
+
+This project is licensed under the Apache License 2.0 — see the [LICENSE](LICENSE) file for details.

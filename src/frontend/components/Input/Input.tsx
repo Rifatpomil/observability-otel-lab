@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { HTMLInputTypeAttribute, InputHTMLAttributes } from 'react';
 import * as S from './Input.styled';
 

@@ -1,5 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
 #/bin/bash
 
 # This script set up how to run Tracetest and which test files 

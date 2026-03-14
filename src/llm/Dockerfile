@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 
 FROM docker.io/library/python:3.12-alpine3.22 AS build-venv
 

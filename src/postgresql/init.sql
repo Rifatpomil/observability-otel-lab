@@ -1,6 +1,3 @@
--- Copyright The OpenTelemetry Authors
--- SPDX-License-Identifier: Apache-2.0
-
 CREATE USER otelu WITH PASSWORD 'otelp';
 
 -- Accounting Service: create a schema

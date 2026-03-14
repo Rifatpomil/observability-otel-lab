@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 /**
  * Copied with modification from src/frontend/gateways/Session.gateway.ts
  */

@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 defmodule FlagdUiWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.

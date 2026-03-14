@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -22,6 +19,7 @@ import * as S from '../../../styles/ProductDetail.styled';
 import { useCurrency } from '../../../providers/Currency.provider';
 import ProductReviewProvider from '../../../providers/ProductReview.provider';
 import ProductAIAssistantProvider from '../../../providers/ProductAIAssistant.provider';
+import AIChatDrawer from '../../../components/AIChatDrawer/AIChatDrawer';
 
 const quantityOptions = new Array(10).fill(0).map((_, i) => i + 1);
 
@@ -99,6 +97,7 @@ const ProductDetail: NextPage = () => {
           </S.Container>
           {productId && (
               <ProductAIAssistantProvider productId={productId}>
+                <AIChatDrawer />
                 <ProductReviewProvider productId={productId}>
                   <ProductReviews />
                 </ProductReviewProvider>

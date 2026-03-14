@@ -1,5 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
 import { ThemedView } from "@/components/ThemedView";
 import ProductList from "@/components/ProductList";
 import { useQuery } from "@tanstack/react-query";

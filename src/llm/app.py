@@ -1,8 +1,5 @@
 #!/usr/bin/python
 
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 from flask import Flask, request, jsonify, Response
 import json
 import time
@@ -14,6 +11,10 @@ import logging
 from openfeature import api
 from openfeature.contrib.provider.flagd import FlagdProvider
 
+# New imports for free RAG and LLM
+from vector_store import search_reviews
+from llama_cpp import Llama
+
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
 
@@ -22,6 +23,11 @@ product_review_summaries_file_path = "./product-review-summaries.json"
 
 inaccurate_product_review_summaries = None
 inaccurate_product_review_summaries_file_path = "./inaccurate-product-review-summaries.json"
+
+# Initialise a free local LLM (GPT4All-J) – model file must be placed in the models folder.
+# The model is ~4GB and runs on CPU; for demo purposes we use a small quantised model.
+LLM_MODEL_PATH = os.getenv("LLM_MODEL_PATH", "./models/all-MiniLM-L6-v2.gguf") # Placeholder path
+llm = None # Will initialize if model exists
 
 def load_product_review_summaries(file_path):
     try:
@@ -82,6 +88,42 @@ def parse_product_id(last_message):
         return match.group(1).strip()
 
     raise ValueError("product ID not found in input message")
+
+# ---------------------------------------------------------------------------
+# New RAG endpoint – free retrieval‑augmented generation using FAISS + LLM
+# ---------------------------------------------------------------------------
+@app.route('/v1/rag', methods=['POST'])
+def rag_endpoint():
+    data = request.json
+    query = data.get('query')
+    top_k = int(data.get('top_k', 3))
+    if not query:
+        return jsonify({"error": "Missing 'query' in request body"}), 400
+
+    # Retrieve most relevant summaries
+    hits = search_reviews(query, top_k)
+    # Concatenate summaries for the LLM prompt
+    context = "\n\n".join([f"Product {pid}: {summary}" for pid, summary in hits])
+    prompt = f"You are an AI assistant for the OpenTelemetry Astronomy Shop. Use the following product review summaries to answer the user's question.\n\nContext:{context}\n\nQuestion: {query}\n\nAnswer:"""
+    
+    # Generate answer with local LLM if available, otherwise return context
+    if llm:
+        answer = llm(prompt, max_tokens=200, stop=["\n\n"])["choices"][0]["text"].strip()
+    else:
+        answer = f"Free RAG Context (LLM not loaded): {context}"
+        
+    return jsonify({"answer": answer, "sources": [pid for pid, _ in hits]})
+
+@app.route('/v1/search', methods=['GET'])
+def search_endpoint():
+    query = request.args.get('q')
+    top_k = int(request.args.get('k', 5))
+    if not query:
+        return jsonify({"error": "Missing 'q' parameter"}), 400
+    
+    hits = search_reviews(query, top_k)
+    results = [{"product_id": pid, "summary": summary} for pid, summary in hits]
+    return jsonify(results)
 
 @app.route('/v1/chat/completions', methods=['POST'])
 def chat_completions():
@@ -210,8 +252,19 @@ def check_feature_flag(flag_name: str):
     return client.get_boolean_value(flag_name, False)
 
 if __name__ == '__main__':
-
     api.set_provider(FlagdProvider(host=os.environ.get('FLAGD_HOST', 'flagd'), port=os.environ.get('FLAGD_PORT', 8013)))
+    
+    # Try to load local LLM
+    if os.path.exists(LLM_MODEL_PATH):
+        try:
+            app.logger.info(f"Loading local LLM from {LLM_MODEL_PATH}...")
+            llm = Llama(model_path=LLM_MODEL_PATH, n_ctx=512, n_threads=4, verbose=False)
+            app.logger.info("Local LLM loaded successfully.")
+        except Exception as e:
+            app.logger.error(f"Failed to load local LLM: {e}")
+    else:
+        app.logger.warning(f"Local LLM model not found at {LLM_MODEL_PATH}. RAG will return raw context.")
+
     product_review_summaries = load_product_review_summaries(product_review_summaries_file_path)
     inaccurate_product_review_summaries = load_product_review_summaries(inaccurate_product_review_summaries_file_path)
 

@@ -1,6 +1,3 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 import { CypressFields } from '../../utils/enums/CypressFields';
 import { useAd } from '../../providers/Ad.provider';
 import * as S from './Ad.styled';

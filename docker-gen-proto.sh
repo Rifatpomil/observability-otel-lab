@@ -1,7 +1,4 @@
 #!/bin/sh
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 set -e # Exit immediately if a command exits with a non-zero status.
 set -x # Print commands and their arguments as they are executed
 

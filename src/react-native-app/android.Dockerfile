@@ -1,8 +1,5 @@
 # syntax=docker/dockerfile:1
 
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 # https://github.com/react-native-community/docker-android
 # Choosing a tag where the Android build tools match what we have in android/build.gradle to avoid the
 # container having to download them
