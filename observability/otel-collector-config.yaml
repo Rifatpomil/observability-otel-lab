@@ -1,5 +1,6 @@
 # OpenTelemetry Collector config for traces + metrics
-# Receives OTLP from instrumented services, exports to Jaeger + Prometheus
+# Receives OTLP from instrumented services (gateway, queueflow), exports to Jaeger + Prometheus
+# spanmetrics connector converts traces to RED metrics (rate, errors, duration)
 
 receivers:
   otlp:
