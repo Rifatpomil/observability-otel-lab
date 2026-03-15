@@ -1,5 +1,6 @@
 # Standalone observability stack: OTel Collector, Jaeger, Prometheus, Grafana
 # Run from project root: docker compose -f observability/docker-compose.yml up -d
+# Includes instrumented gateway + queueflow services
 
 services:
   otel-collector:
