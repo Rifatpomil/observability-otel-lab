@@ -1,6 +1,6 @@
 {
   "title": "Observability - p95 Latency & Queue Depth",
-  "description": "P95 latency and queue depth metrics from instrumented services (gateway, queueflow, auth)",
+  "description": "P95 latency and queue depth metrics from instrumented services (gateway, queueflow, auth). Uses spanmetrics connector.",
   "editable": true,
   "panels": [
     {
