@@ -126,6 +126,18 @@ Jaeger:16686      Prometheus:9090
 
 ---
 
+## Ports Summary
+
+| Port | Service      |
+|------|--------------|
+| 3001 | Gateway      |
+| 8000 | Queueflow    |
+| 4317 | OTLP gRPC    |
+| 4318 | OTLP HTTP    |
+| 16686| Jaeger UI    |
+| 9090 | Prometheus   |
+| 3000 | Grafana      |
+
 ## Files
 
 - `docker-compose.yml` – OTel Collector, Jaeger, Prometheus, Grafana, gateway, queueflow
