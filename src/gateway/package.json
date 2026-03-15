@@ -1,5 +1,6 @@
 {
   "name": "gateway",
+  "description": "Fastify API gateway with OTel instrumentation and proxy routing",
   "version": "1.0.0",
   "type": "module",
   "scripts": {

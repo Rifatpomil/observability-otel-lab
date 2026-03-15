@@ -1,6 +1,7 @@
 """
 Queueflow service - FastAPI with middleware spans + DB spans.
 Exposes queue depth and job endpoints.
+Metrics: queueflow_queue_depth (Prometheus gauge).
 """
 import os
 import sqlite3
